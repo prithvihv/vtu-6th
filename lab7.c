@@ -9,13 +9,16 @@ struct proc
     int finish;
     int turnaround;
     float ratio;
-} process[10]; //structure to hold the process information
+}; //structure to hold the process information
+struct proc process[10];
 struct proc temp;
 int no;
+
 int chkprocess(int);
 int nextprocess();
 void roundrobin(int, int, int[], int[]);
 void srtf(int);
+
 int main()
 {
     int n, tq, choice;
@@ -75,8 +78,11 @@ void roundrobin(int n, int tq, int st[], int bt[])
                 count++;
                 continue;
             }
-            if (st[i] > tq)         // when service time of a process greater than time
-                st[i] = st[i] - tq; //quantum value subtracted from service time
+
+            if (st[i] > tq) // when service time of a process greater than time
+            {
+                st[i] = st[i] - tq; // quantum value subtracted from service time
+            }
             else if (st[i] >= 0)
             {
                 temp1 = st[i]; // temp1 stores the service time of a process
@@ -88,6 +94,7 @@ void roundrobin(int n, int tq, int st[], int bt[])
         if (n == count) // it indicates all processes have completed their task because the count value
             break;      // incremented when service time equals 0
     }                   //end of while
+
     for (i = 0; i < n; i++)
     {
         wt[i] = tat[i] - bt[i]; // waiting time calculated from the turnaround time burst time
@@ -112,10 +119,10 @@ int chkprocess(int s)
             return 1;
     }
     return 0;
-} 
+}
 
 // find the next process to execute based on shortest bust time
-int nextprocess() 
+int nextprocess()
 {
     int min, l, i;
     min = 32000; //any limit assumed
@@ -158,10 +165,10 @@ void srtf(int n)
         }
     }
     no = 0; // keeps track of the processes that are currently running
-    j = 1; // allways looks at the nextprocess that might have to be executed
+    j = 1;  // allways looks at the nextprocess that might have to be executed
     while (chkprocess(n) == 1)
     {
-        // check if the next few process are coming in right now 
+        // check if the next few process are coming in right now
         if (process[no + 1].arrival == time)
         {
             while (process[no + 1].arrival == time)
@@ -183,10 +190,10 @@ void srtf(int n)
         }
         else
         {
-            process[j].finish = time; 
+            process[j].finish = time;
             j = nextprocess(); // process we were working on completed so find nextProcess
-            time--; // we dont use this iteration to make calculations we just update j value
-            k = j; // ? badcode store last process so we can access and update for the last iteration
+            time--;            // we dont use this iteration to make calculations we just update j value
+            k = j;             // ? badcode store last process so we can access and update for the last iteration
         }
         time++;
     }
