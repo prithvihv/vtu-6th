@@ -1,4 +1,4 @@
-yacc -d lab2.y
-lex lab2.l
+yacc -d lab6b.y
+lex lab6b.l
 cc y.tab.c lex.yy.c -ll -o .comp.out
 ./.comp.out

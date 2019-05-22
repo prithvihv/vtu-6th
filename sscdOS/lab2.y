@@ -7,7 +7,7 @@ int count=0,n;
 %token B
 %%
 S : X B | {if(n==count){printf("correct bro");}else{printf("wrong bro ");}}
-X : A X |T
+X : A X | T
 T : A {count++;};
 %%
 int yyerror(){
