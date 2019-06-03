@@ -60,17 +60,19 @@ int main()
 /**
  * tq time quantum is the time slot 
  * n is the number of processes
- * st is the the time remaining of ht bust time
+ * st is the the time remaining of the bust time
  * bt is burst time 
 */
 void roundrobin(int n, int tq, int st[], int bt[])
 {
     int time = 0;
+    // count variable is used to keep track of the number of processes that are completed
+    // sq keeps track of totat time to assign to the tat
     int tat[10], wt[10], i, count = 0, swt = 0, stat = 0, temp1, sq = 0, j, k;
     float awt = 0.0, atat = 0.0;
-    while (1)
+    while (1) // keep trying till we reach the end
     {
-        for (i = 0, count = 0; i < n; i++)
+        for (i = 0, count = 0; i < n; i++) // keep sequence 
         {
             temp1 = tq;
             if (st[i] == 0) // when service time of a process equals zero then count value is incremented
@@ -126,7 +128,7 @@ int nextprocess()
 {
     int min, l, i;
     min = 32000; //any limit assumed
-    for (i = 1; i <= no; i++)
+    for (i = 1; i <= no; i++) // no keeps track of all the process that have already arrived
     {
         if (process[i].rem != 0 && process[i].rem < min)
         {
@@ -142,7 +144,7 @@ void srtf(int n)
     int i, j, k, time = 0;
     float tavg, wavg;
     // take input and store into datastructure
-    for (i = 1; i <= n; i++)
+    for (i = 1; i <= n; i++) // start from one and go til the end !
     {
         process[i].id = i;
         printf("\n\nEnter the arrival time for process %d: ", i);
@@ -165,7 +167,7 @@ void srtf(int n)
         }
     }
     no = 0; // keeps track of the processes that are currently running
-    j = 1;  // allways looks at the nextprocess that might have to be executed
+    j = 1;  // allways looks at the process to execute
     while (chkprocess(n) == 1)
     {
         // check if the next few process are coming in right now

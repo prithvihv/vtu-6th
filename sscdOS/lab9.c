@@ -113,8 +113,8 @@ void lru(char s[], char F[], int l, int f)
         }
         else
         {
-            if (flag != 1) 
-            {
+            if (flag != 1) // page fault has occured need to move everything around again , dont need to keep in mind the element to delete
+            {   
                 for (k = 0; k < top; k++)
                 {
                     F[k] = F[k + 1];

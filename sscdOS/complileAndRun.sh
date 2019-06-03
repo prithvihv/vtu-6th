@@ -1,2 +1,2 @@
-gcc lab4.cc -o .comp.out
+gcc -Wall lab8.c -o .comp.out
 ./.comp.out

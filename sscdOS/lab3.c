@@ -11,7 +11,7 @@ char grm[10][20], fst[10][20], fol[10][20], stk[20], matched[20], inpt[20], inp[
 
 void main()
 {
-    printf("the given grammer\n");
+    printf("the given grammer\n A->aBa\nB->bB|@ \n");
     printf("enter the no of rules");
     scanf("%d", &n);
     printf("enter the grammer and please enter@ instead of epsilon\n");
@@ -133,7 +133,7 @@ void parseinput()
     scanf("%s", inp);
     strcpy(inpt, inp);
     strcat(inpt, "$");
-    printf("matched \t\tstack\t\tinput\t\taction\n");
+    printf("matched\tstack\tinput\taction\n");
     strcpy(stk, "A$");
     i = 0;
     j = 0;
@@ -149,7 +149,7 @@ void parseinput()
             }
             temp = stk[i];
             printf("%s\t\t%s\t\t%s\t\t pop %c\n", matched, stk, inpt, temp);
-            stk[i] = inpt[j] = '\0';
+            stk[i] = inpt[j] = ' ';
             i = i + 1;
             j = j + 1;
             matched[k] = temp;
